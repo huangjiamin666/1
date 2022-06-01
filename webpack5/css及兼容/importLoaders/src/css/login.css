@@ -1,0 +1,5 @@
+@import './test.css';
+.title {
+    display: grid;
+    color: #12345678;
+}

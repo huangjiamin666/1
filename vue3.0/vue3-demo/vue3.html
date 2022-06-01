@@ -1,0 +1,384 @@
+ 
+ <!DOCTYPE html>
+ <html lang="">
+   <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+     <title>vue3.0基础</title>
+     <link rel="stylesheet" href="//at.alicdn.com/t/font_2143783_iq6z4ey5vu.css">
+   </head>
+   <body>
+     <noscript>
+       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+     </noscript>
+     <div id="app">
+       <div>
+      <h1>Vue 3.x</h1><br>
+        Vite vue3.0的脚手架（学习使用） element-plus组件库<br>
+       Vue3现状：
+       <br>
+       vue-next (opens new window)2020年09月18日，正式发布vue3.0版本。但是由于刚发布周边生态不支持，大多数开发者处于观望。<br>
+       现在主流组件库都已经发布了支持vue3.0的版本，其他生态也在不断地完善中，这是趋势。<br>
+       element-plus (opens new window)基于 Vue 3.0 的桌面端组件库<br>
+       vant (opens new window)vant3.0版本，有赞前端团队开源移动端组件库<br>
+       ant-design-vue (opens new window)Ant Design Vue 2.0版本，社区根据蚂蚁 ant design 开发<br><br>
+       </div>
+     
+     <div>
+      <h1>Vue3优点：</h1><br>
+     
+      最火框架，它是国内最火的前端框架之一，官方文档 (opens new window)中文文档(opens new window)<br>
+      性能提升，运行速度事vue2.x的1.5倍左右<br>
+      体积更小，按需编译体积比vue2.x要更小<br>
+      类型推断，更好的支持Ts（typescript）这个也是趋势<br>
+      高级给予，暴露了更底层的API和提供更先进的内置组件<br>
+      ★组合API (composition api) ，能够更好的组织逻辑，封装逻辑，复用逻辑<br>
+     </div>
+     <div>
+      <h1>vite基本使用（创建vue3.0项目)<br></h1>
+      目标：了解vite是什么，使用vite创建vue项目，用来学习vue3知识<br>
+      
+      vite是什么：官方文档(opens new window)<br>
+      
+      它是一个更加轻量（热更新速度快，打包构建速度快）的vue项目脚手架工具。<br>
+      相对于vue-cli它默认安装的插件非常少，随着开发过程依赖增多，需要自己额外配置。<br>
+      所以： 在单纯学习vue3语法会使用它，后面做项目的时候我们还是使用vue-cli<br>
+      vite基本使用：<br>
+      
+      创建项目 npm init vite-app 项目名称 或者 yarn create vite-app 项目名称<br>
+      安装依赖 npm i 或者 yarn<br>
+      启动项目 npm run dev 或者 yarn dev<br>
+      总结： vite是什么？
+      <br>
+      使用vite创建项目学习vue3语法，使用vue-cli创建项目正式开发。<br>
+     </div>
+   
+     
+     
+     
+     
+     <h1>1  创建vue应用 <br></h1>
+      目标：掌握如何创建vue3应用实例<br>
+
+      基本步骤：<br>
+
+      在main.js中导入createApp函数<br>
+      定义App.vue组件，导入main.js<br>
+      使用createApp函数基于App.vue组件创建应用实例<br>
+      挂载至index.html的#app容器<br>
+
+          落地代码：<br>
+
+      App.vue(查看编辑器)<br>
+
+      <template><br>
+        <div class="container"><br>
+          我是根组件<br>
+        </div><br>
+      </template><br>
+      <script>
+      export default {
+        name: 'App'
+      }
+      </script><br>
+
+      main.js<br>
+
+      // 创建一个vue应用<br>
+      // 1. 导入createApp函数<br>
+      // 2. 编写一个根组件App.vue，导入进来<br>
+      // 3. 基于根组件创建应用实例<br>
+      // 4. 挂载到index.html的#app容器<br>
+
+      import {createApp} from 'vue'<br>
+      import App from './App.vue'<br>
+      const app = createApp(App)<br>
+      app.mount('#app')<br>
+      总结： 如何创建vue应用实例？<br>
+
+      通过createApp创建应用实例--->扩展功能将来都是在app上进行<br>
+     
+     <h1>2  vue2.0是选项api, Vue3用到了组合api 简单来说就是一个功能块原来是分散的，现在是放在一起的<br></h1>
+     Setup是一个新的组件选项，作为组件中使用组合api的起点<br>
+     
+     从组件生命周期来看，在组件实例创建(beforeCreate)之前执行<br>
+     这意味着在setup函数中this还不是组件实例，this此时是underfined<br>
+     在模板中需要使用的数据和函数，需要在setup返回<br>
+     Setup () {<br>
+       const msg =’hihi’<br>
+      const say =()=> { <br>
+       console.log(‘111’) <br>
+     }<br>
+     
+       return {mgs,say}<br>
+     }<br>
+     
+     <h1>3生命周期函数  可以多次使用同一个钩子，执行顺序和书写顺序相同<br><br></h1>
+     setup创建实例前<br>
+     onBeforeMount 挂载DOM前<br>
+     onMounted挂载dom后<br>
+     onBeforeUpdate更新组件前<br>
+     onUpdated更新组件后<br>
+     onBeforeUnmount 卸载销毁前<br>
+     onUnmounted卸载销毁后<br>
+     
+     Import {onBeforeMount,onMounted} from ‘vue’<br>
+     export default{<br>
+      name: ‘app’,<br>
+     Setup(){<br>
+     onBeforeMount(()=>{<br>
+       Console.log(111)<br>
+     })<br>
+     onMounted(()=>{<br>
+       Console.log(111)<br>
+     })<br>
+     }<br>
+     
+     }<br>
+     <h1>4.定义响应式对象数据：reactive是一个函数，它可以定义一个复杂数据类型，成为响应式数据<br><br><br></h1>
+     
+       Import {reactive,toRef} from ‘vue’<br>
+       export default{<br>
+     name: ‘app’,<br>
+     setup(){<br>
+       const obj = reactive({<br>
+         name: ‘ls’,<br>
+     age: 18<br>
+     })<br>
+     // 假如模板只需要name属性，这时可以使用toRef函数<br>
+      模板需要多个时，可以使用refs函数<br>
+       注意  从响应式对象数据中结构出的属性数据，不再是响应数据<br>
+     const name=toRef(obj,’name’)<br>
+     const updataName= () =>{<br>
+       toRef转换响应式数据包装成对象，value存放值的位置<br>
+       name.vlaue=’zs’<br>
+     }<br>
+     
+     return {obj,updataName}<br>
+     }<br>
+     }<br>
+     toRef 是函数，转换响应式对象中某个属性为单独响应式数据，并且值是关联的<br>
+     什么是展开运算？<br>
+     <h1>5 .ref函数 <br></h1>
+     掌握使用ref函数定义响应式数据，一般用于简单类型数据<br>
+     实际上ref也可以定义复杂数据类型的响应式数据<br>
+     在修改值，获取值的时候需要.value<br>
+     
+     在模板中使用ref申明的响应式数据，可以省略.value<br>
+     import {ref} from ‘vue’<br>
+     export default {<br>
+       name: ‘app’,<br>
+       setup(){<br>
+         const  name=ref(‘ls’)<br>
+         const  age=ref(10)<br>
+         Return {name,age}<br>
+     }<br>
+     }<br>
+     当明确知道需要的是一个响应式数据对象那么就使用reactive即可<br>
+     其他情况使用ref<br>
+     
+     <h1> 小案例<br></h1>
+     <div><br>
+       <div>x{{x}}</div><br>
+       <div>y{{y}}</div><br>
+     <div>{{count}} <span @click=’add’></span></div><br>
+     </div><br>
+     Import {onMounted,reactive,toRefs}from ‘vue’<br>
+     export default {<br>
+       name: ‘app’,<br>
+     第一个功能鼠标移动显示位置<br>
+       setup(){<br>
+         const mouse = reactive({<br>
+          X: 0,<br>
+          Y: 0<br>
+         )}<br>
+     const move = e=>{<br>
+       mouse.x=e.pageX<br>
+       mouse.y=e.pageY<br>
+     }<br>
+     onMounted(()=>{<br>
+     
+     document.addEventListener(‘mousemove’,move)<br>
+     })<br>
+     onUnmounted(()=>{<br>
+       document.removeEventListener(‘mousemove’)<br>
+     })<br>
+     
+     
+     <h1>第二个功能 累加<br></h1>
+     const count =ref(0)<br>
+     const add = ()=>{<br>
+       count.value ++<br>
+     }<br>
+     return {...mouse}// 展开或者解构后不是响应式数据了<br>
+     这个时候用<br>
+      return {...toRefs(mouse),count, add}<br>
+     }<br>
+     <h1>6    计算属性：当依赖现有的响应式数据根据一定逻辑得到一个新的数据<br></h1>
+     <h1>7    Watch <br><br></h1>
+     
+     1 监听ref数据 监听一个reactive数据也可以这样<br>
+     Watch (count,(newVal,oldVal)=>{<br>
+     第一个参数 需要监听的目标<br>
+     第二个参数 改变后触发的函数<br>
+       Console.log(newVal,oldVal)<br>
+     })<br>
+     2 监听多个数据的变化<br>
+     watch([count,obj],()=>{<br>
+       Console.log(‘111’)<br>
+     })<br>
+     
+     3 监听对象中某一个属性的变化<br>
+     watch(()=>obj.age,()=>{<br>
+     cosnole.log(‘2’)<br>
+     deep: true,<br>
+     Immediate:true<br>
+     })<br>
+     <h1>8.ref属性获取dom<br></h1>
+       获取单个元素<br>
+       <div ref=”box”></div>	<br>
+     <ul><li v-for=”i in 4” :key=”i”  :ref=”setDom”></li></ul><br>
+      Import {ref} from ‘vue’<br>
+     export default {<br>
+       name:’app’,<br>
+     setup(){<br>
+       1 获取单个元素<br>
+       先定义一个空的响应式数据ref定义<br>
+       setup中返回该数据，想获取那个dom，在该元素上使用ref属性绑定该数据即可<br>
+       const box = ref(null)<br>
+       2.获取多个元素<br>
+         定义一个空数组，接收所有的li<br>
+         定义一个函数，往空数组push dom<br>
+         const domlist = []<br>
+         const setDom = (el) => {<br>
+           domList.push(el)<br>
+           
+     }<br>
+       return{box,setDom}<br>
+     }<br>
+     <h1>9 父子组件传值<br></h1>
+       父传给子可以像vue2.0一样拿，<br>
+       当想在setup里面拿时<br>
+       setup(props) {<br>
+         console.log(props.money)<br>
+       }<br>
+      子组件传给父组件<br>
+       Props 父组件数据 emit触发自定义事件的函数<br>
+       setup(props,context) {<br>
+         const changeMoney = () => {<br>
+           context.emit(‘change-money’,50)<br>
+         }<br>
+     }<br>
+     或者<br>
+     setup (props.{emit}){<br>
+       const changeMoney = () =>{<br>
+        emit(‘change-money’,50)<br>
+     }<br>
+        }<br>
+     父组件中的写法和vue2.0相同，只是要写在setup函数内，并且要return<br>
+     <h1>10.依赖注入 provide函数和inject函数<br><br></h1>
+       使用场景：有一个父组件，里头有子组件，有孙组件，有很多后代组件，共享父组件数据<br>
+       将数据共享提供给后代组件 provide (父传后代)<br>
+       provide(‘money’,money) 父 (名字，数据)<br>
+       Inject(‘money’)后代 (名字)<br>
+       后代传父 （思想）<br>
+       在父组件里定义一个函数，通过provide传给后代<br>
+     provide(‘changeMoney’,changeMoney)<br>
+     在后代中通过inject接收<br>
+     const changeMoney = inject(‘changeMoney’)<br>
+     
+     
+     原生事件fn fn(e){//e就是事件对象}  自定义事件，此时的$event代表触发自定义事件的传参<br>
+     Vueuse 插件 loadsh插件 img 的属性 object-fit: cover<br>
+
+
+     <div>
+      // 当前路由地址<br>
+      // 组件里头：`/user?a=10` $route.path === /user  $route.fullPath === /user?a=10<br>
+      vue3中要加.value<br>
+      // js模块中：router.currentRoute.value.fullPath 就是当前路由地址，router.currentRoute 是ref响应式数据<br>
+     
+     </div>
+     <div>
+       小兔仙封装请求<br>
+      npm i axios<br>
+
+      •新建 src/utils/request.js 模块，代码如下<br>
+       
+      js// 1. 创建一个新的axios实例<br>
+      // 2. 请求拦截器，如果有token进行头部携带<br>
+      // 3. 响应拦截器：1. 剥离无效数据  2. 处理token失效<br>
+      // 4. 导出一个函数，调用当前的axsio实例发请求，返回值promise<br>
+      
+      import axios from 'axios'<br>
+      import store from '@/store'<br>
+      import router from '@/router'
+      <br>
+      // 导出基准地址，原因：其他地方不是通过axios发请求的地方用上基准地址<br>
+      export const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net/'<br>
+      const instance = axios.create({<br>
+        // axios 的一些配置，baseURL  timeout<br>
+        baseURL,<br>
+        timeout: 5000<br>
+      })<br>
+      
+      instance.interceptors.request.use(config => {<br>
+        // 拦截业务逻辑<br>
+        // 进行请求配置的修改<br>
+        // 如果本地又token就在头部携带<br>
+        // 1. 获取用户信息对象<br>
+        const { profile } = store.state.user<br>
+        // 2. 判断是否有token<br>
+        if (profile.token) {<br>
+          // 3. 设置token<br>
+          config.headers.Authorization = `Bearer ${profile.token}`<br>
+        }<br>
+        return config<br>
+      }, err => {<br>
+        return Promise.reject(err)<br>
+      })<br>
+      
+      // res => res.data  取出data数据，将来调用接口的时候直接拿到的就是后台的数据<br>
+      instance.interceptors.response.use(res => res.data, err => {<br>
+        // 401 状态码，进入该函数<br>
+        if (err.response && err.response.status === 401) {<br>
+          // 1. 清空无效用户信息<br>
+          // 2. 跳转到登录页<br>
+          // 3. 跳转需要传参（当前路由地址）给登录页码<br>
+          store.commit('user/setUser', {})<br>
+          // 当前路由地址<br>
+          // 组件里头：`/user?a=10` $route.path === /user  $route.fullPath === /user?a=10<br>
+          // js模块中：router.currentRoute.value.fullPath 就是当前路由地址，router.currentRoute 是ref响应式数据<br>
+          const fullPath = encodeURIComponent(router.currentRoute.value.fullPath)<br>
+          // encodeURIComponent 转换uri编码，防止解析地址出问题<br>
+          router.push('/login?redirectUrl=' + fullPath)<br>
+        }<br>
+        return Promise.reject(err)<br>
+      })<br>
+      
+      // 请求工具函数<br>
+      export default (url, method, submitData) => {<br>
+        // 负责发请求：请求地址，请求方式，提交的数据<br>
+        return instance({<br>
+          url,<br>
+          method,<br>
+          // 1. 如果是get请求  需要使用params来传递submitData   ?a=10&c=10<br>
+          // 2. 如果不是get请求  需要使用data来传递submitData   请求体传参<br>
+          // [] 设置一个动态的key, 写js表达式，js表达式的执行结果当作KEY<br>
+          // method参数：get,Get,GET  转换成小写再来判断<br>
+          // 在对象，['params']:submitData ===== params:submitData 这样理解<br>
+          [method.toLowerCase() === 'get' ? 'params' : 'data']: submitData<br>
+        })<br>
+      }<br>
+      
+      
+     </div>
+     </div>
+     <!-- built files will be auto injected -->
+     <script src="http://connect.qq.com/qc_jssdk.js" data-appid="100556005" data-redirecturi="http://www.corho.com:8080/#/login/callback"></script>
+   </body>
+ </html>
+ 
+ 

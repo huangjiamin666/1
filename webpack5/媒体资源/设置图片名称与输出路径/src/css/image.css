@@ -1,0 +1,7 @@
+
+.bgBox {
+    width: 80px;
+    height: 80px;
+    background: url('../img/a.jpg')
+    /* background: url('../img/a.jpg').default */
+}

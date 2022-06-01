@@ -1,0 +1,7 @@
+.title {
+    display: grid;
+    color: #12345678;
+    transition: all .5s;
+    user-select: none;
+    background: linear-gradient(to bottom, white, black)
+}

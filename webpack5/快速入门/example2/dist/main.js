@@ -1,0 +1,1 @@
+(()=>{var o={50:o=>{o.exports=()=>({name:"zce",age:40})},107:()=>{console.log("ccccc")}},e={};function c(r){var s=e[r];if(void 0!==s)return s.exports;var t=e[r]={exports:{}};return o[r](t,t.exports,c),t.exports}(()=>{"use strict";c(107);const o=c(50);console.log(30),console.log(100),console.log(o())})()})();
