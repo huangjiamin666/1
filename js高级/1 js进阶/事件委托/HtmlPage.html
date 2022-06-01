@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        li{
+            height:30px;
+            line-height:36px;
+            background:red;
+            margin:3px 0;
+            list-style:none;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var ul = document.getElementsByTagName('ul')[0];
+            var btn = document.getElementsByTagName('button')[0];
+            btn.onclick = function () {
+                for (var i = 1; i <= 4; i++) {
+                    var newLi = document.createElement('li');
+                    newLi.innerHTML = '我是移民li';
+                    ul.appendChild(newLi);
+                }
+            }
+            ul.onclick = function (event) {
+                //获取事件触动的时候传递过来的值
+                event = event || window.event;
+                var aaa = event.target ? event.target : event.srcElement;
+                if (aaa.tagName = 'li') {
+                    alert('ok');
+                    //普通事件绑定无法为新创建的元素绑定事件，这里用冒泡事件为他们绑定
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button>创建4个li</button>
+    <ul>
+        <li>我是li</li>
+        <li>我是li</li>
+        <li>我是li</li>
+    </ul>
+</body>
+</html>

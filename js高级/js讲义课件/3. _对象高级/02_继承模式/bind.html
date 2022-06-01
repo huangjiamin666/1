@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function f1(x,y){    
+     console.log((x+y)+"========"+this.age);
+     }
+     //复制了一份
+     //bind方法是复制的意思，参数可以再复制的时候传进去，也可以再调用的时候传进去
+     var ff=f1.bind(null,10,20);
+     ff();
+
+
+     function Person(){
+         this.age=100;
+     }
+     Person.prototype.eat=function(){
+         console.log("aaaaa");
+     }
+     var per=new Person();
+     var st=f1.bind(per,10,20);
+     st();
+    </script>
+</body>
+</html>

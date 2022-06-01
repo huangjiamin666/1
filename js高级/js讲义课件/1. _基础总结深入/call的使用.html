@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div id="clockBox">
+    <div id="btn">111</div>
+  </div>
+
+  <script>
+    var btn01 = document.getElementById('btn')
+    function opt (obj, eventStr, callback) {
+      if (obj.addEventListener) {
+        //大部分瀏覽器兼容方式
+        obj.addEventListener(eventStr, callback, false)
+      } else {
+        // IE8以下
+        obj.attachEvent("on" + eventStr, function () {
+          //在匿名函數中調用回調函數
+          callback.call(obj)
+        })
+      }
+    }
+    opt(btn01, 'click', function () {
+      alert(1)
+    })
+  </script>
+</body>
+
+</html>

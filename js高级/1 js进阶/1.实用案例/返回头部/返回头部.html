@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        .rocket {
+            position: fixed;
+            right: 50px;
+            bottom: 100px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <span class="rocket" id="backTop" style="display: none;">
+        <img src="images/Top.jpg" alt="">
+    </span>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+    <p>开始页面内容</p>
+
+
+    <script  type="text/javascript">
+        function $(id) { return document.getElementById(id); }
+        function show(id) { $(id).style.display = "block"; }
+        function hide(id) { $(id).style.display = "none"; }
+        function scroll() {  // 开始封装自己的scrollTop
+            if (window.pageYOffset != null) {  // ie9+ 高版本浏览器
+                // 因为 window.pageYOffset 默认的是  0  所以这里需要判断
+                return {
+                    left: window.pageXOffset,
+                    top: window.pageYOffset
+                }
+            }
+            else if (document.compatMode === "CSS1Compat") {    // 标准浏览器   来判断有没有声明DTD
+                return {
+                    left: document.documentElement.scrollLeft,
+                    top: document.documentElement.scrollTop
+                }
+            }
+            return {   // 未声明 DTD
+                left: document.body.scrollLeft,
+                top: document.body.scrollTop
+            }
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            var timer = null, leader = 0, target = 0;
+            // leader 当前的位置    target 目标位置
+            window.onscroll = function () {
+                scroll().top > 0 ? show("backTop") : hide("backTop");
+                // 如果大于0  就显示  否则 就隐藏
+                leader = scroll().top;   // 存储当前的位置
+            }
+            $("backTop").onclick = function () {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    var step = (target - leader) / 10;
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    leader = leader + step;
+                    window.scrollTo(0, leader);   // 去往页面中的某个位置
+                    console.log(leader);
+                    if (leader == target) {
+                        clearInterval(timer);
+                    }
+                }, 30)
+            }
+            // 复习我们的缓动公式   leader = leader + (target - leader ) / 10;
+            // target 我们一定知道 就是  0
+            // 但是 leader 当前的位置 不知道   但是我们可以通过 scrollTop
+
+
+
+
+
+
+        }
+    </script>
+</body>
+</html>

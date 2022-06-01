@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #tab{
+            height:600px;
+            width:600px;
+            border:1px solid blue;
+            margin:0 auto;
+            position:relative;
+        }
+       
+        #tab ul li{
+            list-style:none;
+            width:200px;
+            height:50px;
+            text-align:center;
+            font-size:30px;
+            float:left;
+            color:white;
+        }
+       #tab .con{
+           position:absolute;
+            height:550px;
+            width:600px;
+            display:none;
+            left:0;
+            top:50px;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li style="background:blue;">军事</li>
+        <li style="background:red;">新闻</li>
+        <li style="background:green;">小说</li>
+    </ul>
+    <div class="con" style="background:blue;display:block;">
+
+    </div>
+    <div class="con" style="background:red;">
+
+    </div>
+    <div class="con" style="background:green;">
+
+    </div>
+</div>
+    <script>
+        window.onload = function () {
+            var tab = document.getElementById('tab');
+            var lis = tab.getElementsByTagName('li');
+            var cons = tab.getElementsByClassName('con');
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].index = i;
+                lis[i].onclick= function () {
+                    for (var i = 0; i < cons.length; i++) {
+                        cons[i].style.display = "none";
+                    }
+                    cons[this.index].style.display = "block";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

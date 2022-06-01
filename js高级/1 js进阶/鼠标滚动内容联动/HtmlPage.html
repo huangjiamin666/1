@@ -1,0 +1,112 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 50px auto;
+            overflow: hidden;
+            padding: 10px;
+            position: relative;
+        }
+
+        .scroll {
+            width: 20px;
+            background: #ccc;
+            height: 530px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .bar {
+            width: 20px;
+            height: 50px;
+            background: red;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+        }
+
+        .content {
+            padding: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //1.模拟滚动条，鼠标拖动滚动条滚动，而且内容等比例联动
+            var box = document.getElementById('box');
+            var content = box.children[0];
+            var scroll = box.children[1];
+            var bar = scroll.children[0];
+            //根据内容和盒子的比例确定bar的高  内容的高/盒子的高=scroll的高/bar的高
+            //var barHeight = box.offsetHeight * scroll.offsetHeight / content.offsetHeight;
+            //bar.style.height = barHeight + 'px';
+            //绑定事件
+            bar.onmousedown = function (event) {
+                event = event || window.event;
+                var pagey = event.pageY || scroll().top + event.clientY;
+                y = pagey - bar.offsetTop;//鼠标在盒子里的位置
+                //模拟拖拽案例   bar走的距离
+                document.onmousemove = function (event) {
+                    event = event || window.event;
+                    var pagey = event.pageY || scroll().top + event.clientY;
+                    pagey = pagey - y;//鼠标位置-鼠标在盒子里的位置
+                    if (pagey < 0) {
+                        pagey = 0;
+                    }
+                    if (pagey > scroll.offsetHeight - bar.offsetHeight) {
+                        pagey = scroll.offsetHeight - bar.offsetHeight;
+                    }
+                    bar.style.top = pagey + 'px';//bar当前的位置★★★
+                   //内容走的距离/bar走的距离=（内容的高-大盒子的高）/(scroll的高-bar的高）
+                    var s = pagey * (content.offsetHeight - box.offsetHeight) / (scroll.offsetHeight - bar.offsetHeight);
+                    content.style.marginTop = -s + 'px';//★★★
+                    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                }
+            }
+            //事件解绑
+            bar.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="content">
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>.3..<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>...
+            <br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>..3.<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+            ...<br>...<br>...<br>...<br>...<br>
+
+        </div>
+        <div class="scroll">
+            <div class="bar" style="height: 164.777px;"></div>
+        </div>
+    </div>
+
+
+</body>
+</html>

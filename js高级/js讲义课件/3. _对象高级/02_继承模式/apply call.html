@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //apply,call：可以改变this的指向
+  //  "use strict";严格模式
+    function f1(x,y){
+        console.log((x+y)+this);
+    }
+    f1(10,20);//window
+    </script>
+
+
+
+    <script>
+     function f1(x,y){
+        console.log((x+y)+this);
+        return "10000";
+    }
+    f1(10,20);//30 window
+
+    console.log('====h==');
+    //此时f1实际上是当成对象来使用的，
+    //apply和call方法也是函数调用的方式
+    f1.apply();
+    f1.call();
+    console.log("====c==");
+    f1.apply(null);
+    f1.call(null);
+    //apply和call方法中如果没有传入参数，或者是传入的null，
+    //那么调用该方法的函数的对象中的this就是默认的window
+    f1.apply(null,[100,200]);//apply(对象，数组)
+    f1.call(null,100,200);//call(对象，多个数值)
+    //apply和call都可以让函数或者方法调用，
+    //传入参数和函数自己调用的写法不一样，但效果一样
+
+    console.log("=========aaa========");
+    var result1=f1.apply(null,[10,20]);
+    var result2=f1.call(null,10,20);
+    console.log(result1);
+    console.log(result2);
+
+    console.log("ccccc");
+
+    function f2(x,y){
+        console.log((x+y)+this.sex);
+    }
+    window.f2(10,20);
+
+    var obj={
+        age:10,
+        sex:"男"
+    };
+   window.f2.apply(obj,[10,20]);
+   window.f2.call(obj,10,20);
+   console.dir(obj);
+//apply和call可以改变this的指向，传入参数的方式不一样,
+//对象传null时表示不改变this的指向
+
+    function Person(age,sex){
+        this.age=age;
+        this.sex=sex;
+    }
+    Person.prototype.sayHi=function(x,y){
+        console.log(this.sex);
+    };
+    var per=new Person(10,"男");
+    per.sayHi();//男
+    console.log("=============");
+    function Student(name,sex){
+        this.name=name;
+        this.sex=sex;
+    }
+    var stu=new Student("小明","人妖");
+    per.sayHi.apply(stu,[10,20]);
+
+
+//方法改变this的指向 函数名.apply(要指向的对象，[参数，参数。。。。。]);
+//                  方法名.apply(对象，[参数，参数。。。。。]);
+//                  函数名.call(对象，参数，，，，，，，，，);
+//                  方法名.call(对象，参数，，，，，，，，，);
+//只要时向使用别的对象的方法，并且希望这个方法是当前对象的，那么可以使用
+function Person(age){
+    this.age=age;
+}
+Person.prototype.sayHi=function(x,y){
+    console.log((x+y)+"===="+this.age);
+};
+function Student(age){
+this.age=age
+}
+var per=new Person(10);
+var stu=new Student(100);
+per.sayHi.apply(stu,[10,20]);
+
+    </script>
+</body>
+</html>

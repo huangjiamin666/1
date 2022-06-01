@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        body{
+            height:2000px;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            vertical-align:top;
+        }
+        .fixed{
+            position:fixed;
+            top:0;
+            left:0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //当滚动界面时，被卷曲的头部超过第二个盒子距离顶部的位置，那么直接给第二个盒子加类名fixed；否则把第二个盒子的类名取消；
+            var topDiv = document.getElementById('top');
+            var height = topDiv.offsetHeight;
+            var middle = document.getElementById('middle');
+            var main = document.getElementById('main');
+            
+            window.onscroll = function () {
+                if (scroll().top > height) {
+                    middle.className = 'fixed';
+                    main.style.paddingTop = middle.offsetHeight + 'px';
+                    
+                } else {
+                    middle.className = '';
+                    main.style.paddingTop = 0;
+                    
+                }
+                function scroll() {
+                    return {
+                        'top':window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop
+                    }
+                   
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="top" id="top">
+        <img src="1.PNG" />
+    </div>
+    <div id="middle">
+        <img src="1.PNG" />
+    </div>
+    <div class="main" id="main">
+        <img src="1.PNG" />
+    </div>
+</body>
+</html>

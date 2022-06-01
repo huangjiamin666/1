@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        window.onload = function () {
+            function djs() {
+                var now = new Date();
+                var fur = new Date(2022, 1, 1, 0, 0);
+                var diff = fur.getTime() - now.getTime();
+                var day = parseInt(diff / (24 * 60 * 60 * 1000));
+                diff = diff % (24 * 60 * 60 * 1000);
+                var hour = parseInt(diff / (60 * 60 * 1000));
+                diff = diff % (60 * 60 * 1000);
+                var minute = parseInt(diff / (60 * 1000));
+                diff = diff % (60 * 1000);
+                var seconds = parseInt(diff / 1000);
+                var s = document.getElementById('time').getElementsByTagName('span');
+                s[0].innerHTML = day;
+                s[1].innerHTML = hour;
+                s[2].innerHTML = minute;
+                s[3].innerHTML = seconds;
+            }
+            djs();
+            setInterval(djs, 1000);
+        }
+    </script>
+</head>
+<body>
+<h1 id="time">距离年底还有<span></span>天<span></span>小时<span></span>分钟<span></span>秒</h1>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        div{
+            width:2000px;
+            height:1000px;
+            background:pink;
+           
+        }
+    </style>
+    <script>
+        //鼠标在盒子中的坐标
+        window.onload = function () {
+            var div = document.getElementsByTagName('div')[0];
+            div.onmousemove = function (event) {
+                event = event || window.event;
+                var pagex = event.pageX || scroll().left + event.clientX;
+                var pagey = event.pageY || scroll().top + event.clientY;
+                var targetx = pagex - div.offsetLeft;
+                var targety = pagey - div.offsetTop;
+                this.innerHTML = targetx + 'px' + "" + targety + 'px';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

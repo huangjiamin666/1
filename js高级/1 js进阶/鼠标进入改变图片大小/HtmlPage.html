@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        window.onload = function () {
+            var a = document.getElementById('a');
+            a.onmouseover = function () {
+                a.style.width = a.offsetWidth * 1.5 + 'px';
+            }
+            a.onmouseout = function () {
+                a.style.width = a.offsetWidth / 1.5 + 'px';
+            }
+        }
+    </script>
+</head>
+<body>
+    <img id="a" src="1.PNG" />
+</body>
+</html>

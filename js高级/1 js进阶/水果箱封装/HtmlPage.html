@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+        select {
+            width: 100px;
+            height: 300px;
+            background: pink;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var sel1 = document.getElementById('sel1');
+            var sel2 = document.getElementById('sel2');
+            var inpArr = document.getElementsByTagName('input');
+            inpArr[0].onclick = function () {
+                fn1(sel1, sel2);
+            }
+            inpArr[1].onclick = function () {
+                fn1(sel2, sel1);
+            }
+            inpArr[2].onclick = function () {
+                fn2(sel1, sel2);
+            }
+            inpArr[3].onclick = function () {
+                fn2(sel2, sel1);
+            }
+            function fn1(ele1, ele2) {
+                var arr = ele1.children;
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    ele2.appendChild(arr[0]);
+                }
+            }
+            function fn2(ele1, ele2) {
+                var arr = ele1.children;
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    if (arr[i].selected == true) {
+                        ele2.appendChild(arr[i]);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <select name="" id="sel1" size="10" multiple="">
+        <option value="1">香蕉1</option>
+        <option value="2">香蕉2</option>
+        <option value="3">香蕉3</option>
+    </select>
+    <input type="button" value=">>>">
+    <input type="button" value="<<<">
+    <input type="button" value=">">
+    <input type="button" value="<">
+    <select name="" id="sel2" size="10" multiple=""></select>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById('btn');
+            var dan = document.getElementById('dan');
+            var speed = 10;
+            btn.onclick = function () {
+                var timer = setInterval(function () {
+                    var old_left = dan.style.left;
+                    var new_left = parseInt(old_left) + speed;
+                    dan.style.left = new_left + 'px';
+                    if (new_left == 600) {
+                        clearInterval(timer);
+                    }
+                },1000)
+            }
+        }
+    </script>
+    <style>
+        #dan{
+            position:absolute;
+            top:50px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="btn" value="点我" /><br />
+
+    <img id="dan" style="left:0" src="1.PNG" />
+</body>
+</html>
