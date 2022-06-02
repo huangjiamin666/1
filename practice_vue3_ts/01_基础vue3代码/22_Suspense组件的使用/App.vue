@@ -4,8 +4,7 @@
   <Suspense>
     <template #default>
       <!--异步组件-->
-      <!--      <AsyncComponent></AsyncComponent>-->
-      <AsyncAddress></AsyncAddress>
+      <AsyncComponent></AsyncComponent>
     </template>
     <template v-slot:fallback>
       <!--准备的内容-->
@@ -24,7 +23,6 @@ import { defineComponent, ref, reactive, defineAsyncComponent } from "vue";
 //vue3中动态引入
 // const AsyncComponent = defineAsyncComponent(()=>import('./AsyncComponent.vue'))
 import AsyncComponent from "./AsyncComponent.vue";
-import AsyncAddress from "@/AsyncAddress.vue";
 export default defineComponent({
   name: "App",
   setup() {
@@ -32,7 +30,6 @@ export default defineComponent({
   },
   components: {
     AsyncComponent,
-    AsyncAddress,
   },
 });
 </script>
