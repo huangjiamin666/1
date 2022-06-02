@@ -4,17 +4,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent,ref,reactive} from 'vue';
+import { defineComponent } from "vue";
 export default defineComponent({
-  name: 'App',
+  name: "App",
   setup() {
-
-    return{
-
-    }
+    return {};
   },
-  components: {
-  }
+  components: {},
 });
 </script>
 

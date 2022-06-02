@@ -4,19 +4,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent,ref,reactive} from 'vue';
-import ModalButton from "@/ModalButton.vue";
+import { defineComponent } from "vue";
+import ModalButton from "./ModalButton.vue";
 export default defineComponent({
-  name: 'App',
+  name: "App",
   setup() {
-
-    return{
-
-    }
+    return {};
   },
   components: {
-    ModalButton
-  }
+    ModalButton,
+  },
 });
 </script>
 
