@@ -11,3 +11,5 @@ formatData(nodes) {
     return item
   })
 }
+
+// localStorage中只能存字符串 所以經常要使用JSON.stringfy()存，JSON.parse()取
