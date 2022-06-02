@@ -21,6 +21,13 @@ export default defineComponent({
   name: "Footer",
   props: {
     todos: {
+      // 类型断言(Type Assertion): 可以用来手动指定一个值
+      //       语法:
+      //     方式一: <类型>值
+      //     方式二: 值 as 类型  tsx中只能用这种方式
+      //
+      // (<string>x).length
+      // x as string
       type: Array as () => Todo[],
       required: true,
     },
