@@ -12,7 +12,7 @@ let myAdd = function (x, y) {
 // 2. 函数类型
 // # 为函数定义类型
 // 让我们为上面那个函数添加类型：
-
+// 我们可以给每个参数添加类型之后再为函数本身添加返回值类型。TypeScript 能够根据返回语句自动推断出返回值类型。
 function add1(x: number, y: number): number {
   return x + y
 }
@@ -20,7 +20,6 @@ function add1(x: number, y: number): number {
 let myAdd1 = function (x: number, y: number): number {
   return x + y
 }
-// 我们可以给每个参数添加类型之后再为函数本身添加返回值类型。TypeScript 能够根据返回语句自动推断出返回值类型。
 
 // 3. 书写完整函数类型
 // 现在我们已经为函数指定了类型，下面让我们写出函数的完整类型。

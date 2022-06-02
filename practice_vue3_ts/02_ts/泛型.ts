@@ -114,7 +114,7 @@ console.log(myGenericNumber.add(myGenericNumber.zeroValue, 12))
 
 // 没有泛型约束
 function fn<T>(x: T): void {
-  // console.log(x.length)  // error
+  console.log(x.length)  // error
 }
 // 我们可以使用泛型约束来实现
 
@@ -129,7 +129,7 @@ function fn2<T extends Lengthwise>(x: T): void {
 // 我们需要传入符合约束类型的值，必须包含必须 length 属性：
 
 fn2('abc')
-// fn2(123) // error  number没有length属性
+fn2(123) // error  number没有length属性
 
 
 

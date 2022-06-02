@@ -147,7 +147,7 @@ console.log(getLengtht('abcd'), getLengtht(1234))
 
 /* 定义变量时赋值了, 推断为对应的类型 */
 let b9 = 123 // number
-// b9 = 'abc' // error
+b9 = 'abc' // error
 
 /* 定义变量时没有赋值, 推断为any类型 */
 let b10  // any类型
