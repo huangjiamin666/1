@@ -130,3 +130,21 @@ function fn2<T extends Lengthwise>(x: T): void {
 
 fn2('abc')
 // fn2(123) // error  number没有length属性
+
+
+
+// 6.内置對象
+// BOM 和 DOM 的内置对象
+// Window
+// Document
+// HTMLElement
+// DocumentFragment
+// Event
+// NodeList
+const div: HTMLElement = document.getElementById('test')
+const divs: NodeList = document.querySelectorAll('div')
+document.addEventListener('click', (event: MouseEvent) => {
+  console.dir(event.target)
+})
+const fragment: DocumentFragment = document.createDocumentFragment()
+
