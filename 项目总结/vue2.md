@@ -1,5 +1,50 @@
 model是data view是template vm是new vue()
 
+
+
+子組件調用父組件内函數的方式
+1. 父組件
+<template>
+  <div>
+    <child @fatherMethod="fatherMethod" :fatherMethod="fatherMethod"></child>
+  </div>
+</template>
+<script>
+  import child from './components/childcomponent';
+  export default {
+    components: {
+      child
+    },
+    methods: {
+      fatherMethod() {
+        console.log('父组件方法');
+      }
+    }
+  };
+  </script>
+子組件
+<template>
+  <div>
+    <button @click="childMethod()">点击按钮</button>
+  </div>
+</template>
+<script>
+  export default {
+    methods: {
+      // childMethod() { 
+      //   this.$parent.fatherMethod(); 第一種方式
+      // },
+      // childMethods() {
+      //   this.$emit('fatherMethod'); 第二種方式
+      // }
+      // childMethod() {
+      //     this.fatherMethod(); 第三種方式
+      //   }
+    }
+  };
+</script>
+
+
 vue特性：雙向綁定，組件化
 
 #### 生命周期
