@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function resolve1() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('resolve1');
+        }, 1000)
+      })
+    }
+    function resolve2() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('resolve2');
+        }, 2000)
+      })
+    }
+    function resolve3() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('resolve3');
+        }, 3000)
+      })
+    }
+    function reject1() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject('reject1');
+        }, 1000)
+      })
+    }
+    function reject2() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject('reject2');
+        }, 2000)
+      })
+    }
+    function reject3() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          reject('reject3');
+        }, 3000)
+      })
+    }
+    // Promise.all Promise.race Promise.resolve Promise.reject Promise.allSettled(ES2020) Promise.any(ES2021)
+    // 数组的所有promise对象都改变fulfilled状态
+    Promise.all([resolve1(), reject2(), resolve3()]).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    });
+
+    Promise.race([resolve1(), reject2(), resolve3()]).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    });
+    // ES2020 ES11
+    Promise.allSettled([reject1(), reject2(), reject3()]).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    });
+
+    // 
+    Promise.any([reject1(), reject2(), reject3()]).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    });
+
+  </script>
+</body>
+
+</html>

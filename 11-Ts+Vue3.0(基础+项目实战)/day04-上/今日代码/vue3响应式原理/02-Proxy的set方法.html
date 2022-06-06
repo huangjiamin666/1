@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+    let obj = {
+      name:"Vue",
+      age:8
+    }
+    // Proxy代理  new Proxy() 创建一个代理对象
+    // new Proxy(要代理的这个对象，{get(),set()})
+    let obj2 = new Proxy(obj, {
+      get(target, property){
+        // 什么时候执行？？   当我们访问 obj2的某个属性的时候
+        // target和property表示什么？？
+        // target 是这个obj对象， property就是我们访问的这个属性
+        console.log("执行了get", target, property);
+        return target[property]
+      },
+      set(target, property, newVal){
+        // 数据劫持  newVal就是 = 号后面的这个值
+        console.log("执行了set",target, property, newVal);
+        
+        // 在这里进行修改这个属性成为新的值， 下次访问，才能拿到新值
+        target[property]=newVal;
+      }
+    })
+
+      obj2.age=9;  // 触发执行了set
+      console.log(obj2.age);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

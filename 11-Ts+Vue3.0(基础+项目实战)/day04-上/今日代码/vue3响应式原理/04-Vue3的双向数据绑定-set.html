@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  
+</head>
+<body>
+    <input type="text" id="ipt">
+    <p id="op"></p>
+    <script>
+
+        let obj = {
+          txtVal:"初始值"
+        }
+
+        function myReactive(obj){
+          return new Proxy(obj,{
+            get(target,property){
+              return target[property]
+            },
+            set(target,property,newVal){
+              // 对象劫持，数据劫持
+              ipt.value = newVal;
+              op.innerHTML = newVal;
+              target[property]=newVal;
+            }
+          })  
+        }
+        
+
+        let objRet = myReactive(obj);
+
+        // 绑定初始值
+        ipt.value = objRet.txtVal;
+        op.innerHTML = objRet.txtVal;
+
+        ipt.addEventListener("input",e=>{
+          objRet.txtVal=e.target.value   // 触发set
+        })
+    </script>
+</body>
+</html>
