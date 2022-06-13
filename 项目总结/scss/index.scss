@@ -1,0 +1,183 @@
+$colors:(primary: #db9e3f,
+  info: #4b67af,
+  danger: #791a16,
+  blue-1: #1f3695,
+  'blue': #4394e4,
+  "white": #fff, //当键名与变量名冲突是，使⽤字符串表⽰
+  light: #f9f9f9,
+  light_1: #d4d9de,
+  "grey": #999,
+  grey_1: #666,
+  dark_1: #343440,
+  dark-2: #34342d,
+  "dark": #212222,
+  "black": #000,
+);
+$border-color: map-get($map: $colors, $key: 'light_1');
+// font size
+$base-font-size: 1rem;
+$font-sizes:(xxs: 0.5714, //8px
+  xs: 0.7143, //10px
+  sm: 0.8571, //12px
+  md: 1, //14px
+  lg: 1.1429, //16px
+  xl: 1.2857 //18px
+);
+$flex-jc:(start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around);
+$flex-ai:(start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch);
+// spacing
+// 0-5: 0
+// bootstrap中.mt-1 => margin-top level1    .pb-2 => padding-bottom level2
+$spacing-types:(m:margin,
+  p:padding);
+$spacing-directions:(t:top,
+  r:right,
+  b:bottom,
+  l:left);
+$spacing-base-size:1rem;
+$spacing-sizes:(0:0,
+  1:0.25,
+  2:0.5,
+  3:1,
+  4:1.5,
+  5:3);
+
+* {
+  box-sizing: border-box; //以边框为准，不会撑⼤盒⼦，只会挤压内容
+  outline: none; //取消⾼亮样式
+  touch-action: none; //none：系统默认菜单被禁⽤default：系统默认菜单不被禁⽤
+}
+
+html,
+body,
+#app,
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  //body默认有边距，需重置为零
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif; //Arial⼤部分电脑都有，Helvetica苹果字体，sans-serif⾮衬线字体，即字体线条粗细⼀致
+  line-height: 1.2em;
+  background: #f1f1f1;
+  -webkit-font-smoothing: antialiased; //平滑效果，苹果电脑上可以看见0.5像素的平滑效果
+}
+
+@each $colorKey,
+$color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+
+  .bg-#{$colorKey} {
+    background: $color;
+  }
+}
+
+// text-align
+@each $var in (left, center, right) {
+
+  // #{}引⽤变量
+  .text-#{$var} {
+    text-align: $var !important;
+  }
+}
+
+// font size
+@each $sizeKey,
+$size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+// text-ellipsis
+.text-ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+$flex-jc:(start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around);
+
+@each $jcKey,
+$jc in $flex-jc {
+  .jc-#{$jcKey} {
+    justify-content: $jc;
+  }
+}
+
+$flex-ai:(start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch);
+
+@each $aiKey,
+$ai in $flex-ai {
+  .ai-#{$aiKey} {
+    align-items: $ai;
+  }
+}
+
+// spacing
+// 0-5: 0
+// bootstrap中.mt-1 => margin-top level1    .pb-2 => padding-bottom level2
+@each $typeKey,
+$type in $spacing-types {
+
+  // m-1
+  @each $sizeKey,
+  $size in $spacing-sizes {
+
+    //  .mt-1 { margin-top: .25rem }
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size
+    }
+  }
+
+  // mx-1
+  @each $sizeKey,
+  $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size
+    }
+
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size
+    }
+  }
+
+  // mt-1
+  @each $directionKey,
+  $direction in $spacing-directions {
+
+    @each $sizeKey,
+    $size in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size * $spacing-base-size
+      }
+    }
+  }
+}
+
+@each $var in (top, right, bottom, left) {
+  .border-#{$var} {
+    border-#{$var}: 1px solid $border-color;
+  }
+}

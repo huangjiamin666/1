@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<!-- 1.慢
+2.不能跨域加載js
+3.worker内代碼不能訪問dom（更新ui)
+4.瀏覽器不是都兼容 -->
+
+<body>
+  <input type="text" placeholder="數值" id="number">
+  <button id="btn">計算</button>
+  <script>
+    var input = document.getElementById('number')
+    document.getElementById('btn').onclick = function () {
+      var number = input.value
+      // 創建一個worker對象
+      var worker = new Worker('worker.js')
+      // 綁定接受消息的監聽
+      worker.onmessage = function (event) {
+        console.log('主綫程接收分綫程返回的數據：') + event.data
+        alert(event.data)
+
+      }
+      // 向分綫程發送消息
+      worker.postMessage(number)
+      console.log('主綫程向分綫程發送數據：' + number)
+    }
+  </script>
+
+</body>
+
+</html>

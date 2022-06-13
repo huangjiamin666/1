@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>03_原型链</title>
 </head>
+
 <body>
-<!--
+  <!--
+  （Object的原型對象是原型鏈的盡頭）是null,找不到會返回undefined
 1. 原型链(图解)
   * 访问一个对象的属性时，
     * 先在自身属性中查找，找到返回
@@ -16,21 +19,22 @@
 2. 构造函数/原型/实体对象的关系(图解)
 3. 构造函数/原型/实体对象的关系2(图解)
 -->
-<script type="text/javascript">
-  function Fn() {
-    this.test1 = function () {
-      console.log('test1()')
+  <script type="text/javascript">
+    function Fn () {
+      this.test1 = function () {
+        console.log('test1()')
+      }
     }
-  }
-  Fn.prototype.test2 = function () {
-    console.log('test2()')
-  }
-  var fn = new Fn()
+    Fn.prototype.test2 = function () {
+      console.log('test2()')
+    }
+    var fn = new Fn()
 
-  fn.test1()
-  fn.test2()
-  console.log(fn.toString())
-  fn.test3()
-</script>
+    fn.test1()
+    fn.test2()
+    console.log(fn.toString())
+    fn.test3()
+  </script>
 </body>
+
 </html>
