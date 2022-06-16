@@ -1,3 +1,11 @@
+// 類型斷言
+// 1. < 類型 > 變量名
+// 2. 值 as 類型
+
+// 聯合類型 A|B
+// 汎型
+
+
 // 1.類型注解
 function greeter(person: string) {
   return 'Hello, ' + person
