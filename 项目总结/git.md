@@ -1,3 +1,4 @@
+在master上git fetch origin//
 git checkout -b dev origin/dev 
 從遠程拉取分支到本地并且在本地創建一個同名分支，這樣提交到遠程只要git add . git commit -m '' git push
 
