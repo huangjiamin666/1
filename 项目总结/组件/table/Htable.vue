@@ -126,8 +126,22 @@ export default {
   },
   data () {
     return {
-
+      indexMethodPageInfo: {
+        total: 0,
+        pageSize: 10,
+        pageNum: 1,
+      }
     }
+  },
+  wtach: {
+    loading: {
+      immediate: true,
+      handler: function (newVal) {
+        if (!newVal) {
+          this.indexMethodPageInfo = JSON.parse(JSON.stringify(this.pagingInfo))
+        }
+      }
+    },
   },
   computed: {
     indexColumnFixed: function () {
@@ -152,10 +166,11 @@ export default {
       this.$emit('selectionChange', val)
     },
     indexMethod (index) {
+      const { pageSize, pageNum } = this.indexMethodPageInfo
       if (this.indexColumnOptions.indexMethod) {
         return this.indexColumnOptions.indexMethod(index)
       } else {
-        return index + 1
+        return (pageNum - 1) * pageSize + index + 1
       }
     },
     currentPageFn (pageNum) {
@@ -164,7 +179,7 @@ export default {
     },
     sizePageFn (pageSize) {
       this.pagingInfo.pageSize = pageSize
-      this.$emit('pagingChange', { pageSize, pageNum: this.pagingInfo.pageNum })
+      this.$emit('pagingChange', { pageSize, pageNum: 1 })
     }
   }
 }

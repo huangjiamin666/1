@@ -199,11 +199,21 @@
         :multiple="templateOptions.multiple"
         :accept="templateOptions.accept"
         :http-request="templateOptions.httpRequest"
+        :show-file-list="templateOptions.showFileList"
       >
         <el-button
           siz="small"
-          plain
-        >點擊上傳</el-button>
+          :type="templateOptions.buttonType||'default'"
+          :plain="!templateOptions.buttonType"
+        >
+          <span v-if="(!data[prop]||data[prop].length===0)&&templateOptions.emptyButtonText">
+            {{
+            templateOptions.emptyButtonText
+          }}</span>
+          <span v-else>
+            {{templateOptions.hideUploadButton?'':'點擊上傳'}}
+          </span>
+        </el-button>
       </el-upload>
       <el-checkbox-group
         v-model="data[prop]"

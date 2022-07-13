@@ -36,7 +36,13 @@ export default {
         pageNum: 1
       },
       tableColumns: [
-        { key: 'reportName', label: '监管报告名称', fixed: true, minWidth: 250, showOverflowTooltip: true },
+        {
+          key: 'reportName',
+          label: '监管报告名称',
+          fixed: true,
+          minWidth: 250,
+          showOverflowTooltip: true
+        },
         {
           key: 'reportPeriod',
           label: '报告周期',
