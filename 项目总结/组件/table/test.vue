@@ -56,9 +56,19 @@ export default {
           key: 'generateDate',
           label: '生成日期',
           minWidth: 300,
-          formatData: val => {
+          formatData: (val, row) => {
             return formatDate(val)
           },
+          showOverflowTooltip: true
+        },
+        {
+          key: 'generateDate',
+          label: '生成日期',
+          minWidth: 300,
+          formatData: (val, row) => {
+            return `${val}/${row.val}`
+          },
+          iff: () => this.flag,
           showOverflowTooltip: true
         },
         {
