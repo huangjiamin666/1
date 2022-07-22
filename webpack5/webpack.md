@@ -3,7 +3,7 @@
 ## 五個模塊：entry,output,module,plugin,loader
 ## loader特定的模塊類型進行轉換
 ## plugin用於更加廣汎的任務，如打包優化，資源管理，環境變量注入等
-1. postcss處理css兼容 （結合borwserslitrc)
+1. postcss處理css兼容 babel處理js兼容（結合borwserslitrc)
 2. assets代替file-loader url-loader
 3. cleanWebpackPlugin 打包之前清除舊的包
 4. 複製html模板
@@ -32,4 +32,9 @@
     ]
   })
 
-7. sourceMap是從已轉換的代碼，映射到原始的源文件
+7. ## sourceMap是從已轉換的代碼，映射到原始的源文件
+   ## devtool開發調試   被babel處理過後的代碼用 devtool:'cheap-module-source-map'
+   開發推薦 devtool:'cheap-module-source-map' 
+   生產環境推薦 devtool:'false' 
+
+8. ## babel的使用
