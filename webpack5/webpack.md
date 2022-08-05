@@ -126,3 +126,27 @@
         entry:'./src/index.js'
       }
     } -->
+
+13. ## 打包優化
+const TerserWebpackPlugin=require('terser-webpack-plugin)
+
+optimization:{
+  <!-- 對代碼進行壓縮 -->
+  minimizer:[
+    new TerserWebpackPlugin({
+      extractComments:false
+    })
+  ],
+  splitChunks:{
+    <!-- async異步 initial同步 all都接受 異步引入的時候這裏的async才有效果 import動態函數加載一個庫-->
+    <!-- import('loadsh').then((res)=>{}) -->
+    cacheGroups:{
+      'async-mock':{
+        test:/[\\/]node_modules[\\/]mockjs[\\/]/,
+        name:'async-mock',
+        chunks:'all',
+        priority:10
+      }
+    }
+  }
+}
