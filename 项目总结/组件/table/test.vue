@@ -37,6 +37,16 @@ export default {
       },
       tableColumns: [
         {
+          key: 'dest',
+          label: () => {
+            return this.flag ? '管轄' : '時間'
+          },
+          fixed: true,
+          minWidth: 250,
+          align: 'center',
+          showOverflowTooltip: true
+        },
+        {
           key: 'reportName',
           label: '监管报告名称',
           fixed: true,

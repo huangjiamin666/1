@@ -22,11 +22,15 @@
 export default ({
   data () {
     return {
-      documentWidth: document.documentElement.offsetWidth
+      documentWidth: document.documentElement.clientWidth,
+      documentHeight: document.documentElement.clientHeight
     }
   },
   handleFullScreen () {
+    this.documentWidth = document.documentElement.clientWidth,
+      this.documentHeight = document.documentElement.clientHeight
     this.fullScreen = !this.fullScreen
+    document.querySelector('body').style.overflowY = this.fullScreen ? 'hidden' : 'auto'
   }
 })
 </script>

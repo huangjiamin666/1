@@ -4,11 +4,12 @@
     :border="!!border"
     style="width: 100%"
     :header-cell-style="headerCellStyle"
-    :max-height="maxHeight"
+    :max-height="$attrs.maxHeight"
     :empty-text="emptyText"
     @select="selection"
     @select-all="selectionAll"
     @selection-change="handleSelectionChange"
+    v-bind="othersConfig"
   >
     <template v-if="showSelection">
       <el-table-column
