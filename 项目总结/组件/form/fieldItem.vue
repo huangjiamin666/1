@@ -15,6 +15,8 @@
         :placeholder="templateOptions.placeholder||'請輸入'"
         :disabled="!!templateOptions.disabled"
         :clearable="!!templateOptions.clearable"
+        :maxlength="templateOptions.maxlength"
+        :style="{width:templateOptions.width+'px'}"
       >
       </el-input>
     </template>
@@ -27,6 +29,8 @@
         :disabled="!!templateOptions.disabled"
         :rows="templateOptions.rows||2"
         :clearable="!!templateOptions.clearable"
+        :maxlength="templateOptions.maxlength"
+        :style="{width:templateOptions.width+'px'}"
       ></el-input>
     </template>
     <!--autocomplete-->
@@ -36,6 +40,8 @@
         :placeholder="templateOptions.placeholder||'請輸入'"
         :disabled="!!templateOptions.disabled"
         :clearable="!!templateOptions.clearable"
+        @blur="templateOptions.resc"
+        :fetch-suggestions="templateOptions.fetchSuggestions"
       >
       </el-autocomplete>
     </template>
@@ -49,6 +55,7 @@
         :clearable="!!templateOptions.clearable"
         :pickerOptions="templateOptions.pickerOptions"
         @change="templateOptions.change"
+        :value-format="templateOptions.valueFormat"
       >
       </el-date-picker>
     </template>
@@ -63,6 +70,7 @@
         :disabled="!!templateOptions.disabled"
         :clearable="!!templateOptions.clearable"
         :pickerOptions="templateOptions.pickerOptions"
+        :value-format="templateOptions.valueFormat"
         @change="templateOptions.change"
       >
       </el-date-picker>
@@ -116,7 +124,7 @@
     <template v-else-if==="type==='district-cascader'">
       <el-cascader
         :options='proviceList'
-        :props="{checkStrictly:true}"
+        :props="Object.assign({{checkStrictly:true},templateOptions.props||{})"
         v-model="data[prop]"
         @change="templateOptions.change"
       >
@@ -127,6 +135,7 @@
       <el-upload
         class="upload-demo"
         :action="templateOptions.action||'file'"
+        :disabled="templateOptions.disabled||false"
         :data="templateOptions.uploadParams"
         :name="templateOptions.name"
         :auto-upload="templateOptions.autoUpload||false"
@@ -216,9 +225,11 @@
         </el-button>
       </el-upload>
       <el-checkbox-group
-        v-model="data[prop]"
+        v-model="
+        data[prop]"
         style="display:none"
-      ></el-checkbox-group>
+      >
+        </el-checkbox-group>
     </template>
   </el-form-item>
 </template>

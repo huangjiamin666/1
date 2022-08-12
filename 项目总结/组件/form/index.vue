@@ -82,6 +82,11 @@ export default {
             if (cb) {
               cb(val)
             }
+          },
+          resc: (cb, val) => {
+            if (cb) {
+              cb(val)
+            }
           }
         },
         select: {

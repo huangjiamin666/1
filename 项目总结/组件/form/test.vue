@@ -31,6 +31,52 @@ export default {
       },
       formFields: [
         {
+          key: 'orgName',
+          type: 'autocomplete',
+          rules: [
+            {
+              required: true,
+              message: '請輸入正確的機構名稱',
+              trigger: 'change',
+            }
+          ],
+          templateOptions: {
+            label: '機構名稱',
+            placeholder: '請輸入',
+            width: 300,
+            fetchSuggestions: async (queryString, cb) => {
+              if (!queryString) {
+                queryString = ''
+              }
+              let list = await api.getOrgNameList({
+                pageSize: 10,
+                pageNum: 1,
+                orgName: queryString,
+                loading: 'NO'
+              }).then(res => {
+                return res.data
+              })
+              list = list.map(item => {
+                return {
+                  value: item.orgName,
+                  areaCode=item.registerAddrCode,
+                  socialId=item.socialId
+                }
+              })
+              this.orgNameArr = list
+              cb(list)
+            },
+            resc: () => {
+              let newArr = this.orgNameArr && this.orgNameArr.map(item => {
+                return item
+              })
+              if (!newArr.includes(this.form.orgName)) {
+                this.form.orgName = ''
+              }
+            }
+          }
+        },
+        {
           key: 'modName',
           type: 'input',
           templateOptions: {
@@ -55,6 +101,7 @@ export default {
           templateOptions: {
             label: '評級年度',
             placeholder: '請選擇',
+            valueFormat: 'yyyy-MM-dd',
             type: 'year',
             pickerOptions: {
               disableDate: (date) => moment(date).year() > moment().yearI()
