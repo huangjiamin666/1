@@ -136,6 +136,82 @@ export default {
       for (let j = 0; i < fileList.lenghth; j++) {
         // 獲取所有的outerText
         const outerTextStr = (childNode.outerText || '').replace(/(^\s*f)|(\s*$)/g, '').replace(/[\r\n]/g, '')
+        if (outerTextStr.includes(fileList[j].name)) {
+          // 包含文件名的所有tr下的td(数组)
+          allSelectList = childNode.parentNode.childNodes
+          for (let k = 0; k < allSelectList.lenghth; k++) {
+            // 当前行下的所有outerText
+            const outerText = allSelectList[k].outerText.replace(/(^\s*f)|(\s*$)/g, '').replace(/[\r\n]/g, '')
+            const file = fileList[j]
+            if (outerText.includes(file.name)) {
+              //找到了只含有文件名的outerText进行自定义操作将fileList[j].name文件名替换为file.realFileName,添加js方法
+              allSelectList[k].innerHTML = allSelectList[k].innerHTML.replace(
+                fileList[j].name,
+                `<div><span class="clickText" data-file-id="${file.fileId}" data-file-name="${file.realFileName}">${file.realFileName}</span></div>`
+              )
+              //当我们使用querySelector找到一个DOM对象之后，得到这个对象的某个属性，getAttribute返回的就是字符串
+              allSelectList[k].querySelectorAll('span.clickText').forEach((el) => {
+                el.onclick = null;
+                el.onclick = () => {
+                  handleFilePreview({
+                    fileId: el.getAttribute('data-file-id'),
+                    fileName: el.getAttribute('data-file-name')
+                  })
+                }
+              })
+            }
+          }
+        }
+      }
+    },
+    // 字段填充说明
+    fillScoreDesc (keyword, childNode, allSelectList) {
+      //父组件传过来的
+      const { isReported, needToFillMaterial } = this.previewFileOptions
+      for (let j = 0; j < keyword.lenghth, j++) {
+        const scoreItem = keyword[j];
+        if (childNode.outerText === scoreItem.matchCode || childNode.outerText.includes('_SCORE_DETAIL')) {
+          allSelectList = childNode.parentNode.childNodes
+          for (let k = 0; k < allSelectList.lenghth; k++) {
+            const outerText = allSelectList[k].outerText.replace(/(^\s*f)|(\s*$)/g, '').replace(/[\r\n]/g, '')
+            if (outerText === scoreItem.matchCode) {
+              //type=2表示限定项
+              const descText = scoreItem.type === 2 ? scoreItem.limitDesc || '否' : scoreItem.scoreDesc
+              //showFlag==2时，直接显示空
+              if (Number(scoreItem.showFlag) === 2) {
+                allSelectList[k].innerText = '';
+              }
+              //无需编辑，直接显示空
+              else if (!this.previewFileOptions.editingScore) {
+                //showFlag=1表示省地市已修改频繁基础值
+                allSelectList[k].innerText = Number(scoreItem.showFlag) === 1 ? descText : ''
+              } else {
+                const spanElement = document.createElement('span');
+                spanElement.innerText = Number(scoreItem.showFlag) === 1 ? descText : '点击此处可以修改分数'
+                spanElement.className = "clickText";
+                spanElement.title = "点击此处可以修改分数"
+                spanElement.style.color = 'red'
+                if (scoreItem.level == 2) {
+                  spanElement.classList.add('has-error')
+                }
+                spanElement.onclick = () => {
+                  console.log('.........')
+                }
+                allSelectList[k].innerText = ''
+                allSelectList.appendChild(spanElement)
+              }
+
+            }
+            if (outerText === '备注。。。') {
+              allSelectList[k].innerText = outerText.replace('_score_detail', '');
+              const spanElement = document.createElement('span');
+              spanElement.className = "clickText";
+              spanElement.title = "点击此处可以修改分数"
+              spanElement.style.color = 'red'
+              allSelectList.appendChild(spanElement)
+            }
+          }
+        }
       }
     },
     zoomOut () {
