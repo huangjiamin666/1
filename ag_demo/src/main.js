@@ -3,7 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import "ag-grid-community/styles/ag-grid.css";//网格“结构”样式表
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";//网格主题
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
