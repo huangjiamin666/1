@@ -14,6 +14,7 @@ git push
 
 git stash 把所有没有提交的修改暂存到stash里面  可用git stash pop回复。
 
-
+刪除遠程分支  git push origin --delete new_a
+刪除本地分支 git branch -D 分支
 查看當前yarn源 yarn config get registry   https://registry.npmjs.org/ 
 設置yarn 源 yarn config set registry xxxxxxx
