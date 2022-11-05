@@ -16,6 +16,12 @@
   </ag-grid-vue>
 </template>
 <script>
+// yarn add ag-grid-community@^27.2.1 ag-grid-vue@^27.2.1 vue-property-decorator^8.3.0
+/* main.js内 
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
+
+*/
 import { AgGridVue } from "ag-grid-vue";
 import { columnDefs } from "./config/param";
 export default {
