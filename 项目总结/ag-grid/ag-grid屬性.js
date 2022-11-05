@@ -1,4 +1,4 @@
-{
+
   /* <ag-grid-vue
       @cell-focused="onCellFocused"
       @row-selected="onRowSelected"
@@ -7,7 +7,6 @@
     >
     </ag-grid-vue>
  */
-}
 
 const columnDefs = [//列定义
   {
