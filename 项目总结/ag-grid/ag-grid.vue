@@ -22,6 +22,21 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
 */
+
+
+// 添加新行
+
+// const row = //someNewRowDataHere
+
+// this.gridOptions.rowData.push(row)
+// this.gridApi.setRowData(this.gridOptions.rowData)
+// 消除
+
+// const selectedRow = this.gridApi.getFocusedCell()
+// const id = this.gridOptions.rowData[selectedRow.rowIndex].i
+
+// this.gridOptions.rowData.splice(selectedRow.rowIndex, 1)
+// this.gridApi.setRowData(this.gridOptions.rowData)
 import { AgGridVue } from "ag-grid-vue";
 import { columnDefs } from "./config/param";
 export default {
