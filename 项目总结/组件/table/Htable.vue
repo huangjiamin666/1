@@ -10,6 +10,8 @@
     @select-all="selectionAll"
     @selection-change="handleSelectionChange"
     v-bind="othersConfig"
+    :stripe="stripe"
+    :default-sort="defaultSort"
   >
     <template v-if="showSelection">
       <el-table-column
@@ -85,7 +87,17 @@ export default {
       type: Boolean,
       default: false
     },
+    stripe: {
+      type: Boolean,
+      default: false
+    },
     indexColumnOptions: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    defaultSort: {
       type: Object,
       default () {
         return {}

@@ -5,8 +5,8 @@
     :rules="rules"
   >
     <!--slot自定義-->
-    <template v-if="render">
-      <slot :name="render"></slot>
+    <template v-if="templateOptions.render">
+      <slot :name="templateOptions.render"></slot>
     </template>
     <!--input-->
     <template v-else-if="type==='input'">
@@ -41,6 +41,7 @@
         :disabled="!!templateOptions.disabled"
         :clearable="!!templateOptions.clearable"
         @blur="templateOptions.resc"
+        @select="templateOptions.handleSelect"
         :fetch-suggestions="templateOptions.fetchSuggestions"
       >
       </el-autocomplete>
@@ -121,7 +122,7 @@
       </el-select>
     </template>
     <!--機構所在地-->
-    <template v-else-if==="type==='district-cascader'">
+    <!-- <template v-else-if="type=='district-cascader'">
       <el-cascader
         :options='proviceList'
         :props="Object.assign({{checkStrictly:true},templateOptions.props||{})"
@@ -129,7 +130,7 @@
         @change="templateOptions.change"
       >
       </el-cascader>
-    </template>
+    </template> -->
     <!--上傳-->
     <template v-else-if="type==='upload'">
       <el-upload

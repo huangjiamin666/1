@@ -5,8 +5,11 @@
     :config="formConfig"
     :formRef.sync="formRef"
   >
-    <template slot="actions">
+    <!-- <template slot="actions">
       <el-button>插槽</el-button>
+    </template> -->
+    <template slot-sceope="templateOptions" slot="industryId">
+      <el-cascader></el-cascader>
     </template>
   </v-form>
 
@@ -167,8 +170,24 @@ export default {
         //     uploadSuccess: this.handleUploadSuccess.bind(this)
         //   }
         // },
+        // {
+        //   render: 'actions'
+        // },
         {
-          render: 'actions'
+          render: 'industryId',
+          key:'industryId',
+          rules:[
+            {
+              require:true,
+              message:'请选择',
+              trigger:'change'
+            }
+          ],
+          templateOptions:{
+            span:12,
+            render:'industryId',
+            label:'所属行业'
+          }
         }
       ]
     }

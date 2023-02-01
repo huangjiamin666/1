@@ -3,3 +3,6 @@ pdf預覽  const binaryData=[]
          const blob=new Blob(binaryData,{type,'application/pdf'})
          const url = URL.createObjectURL(blob)
          window.open(url)
+
+
+菜单滚动         el-scrollbar

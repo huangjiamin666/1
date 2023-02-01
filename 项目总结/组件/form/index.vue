@@ -5,7 +5,7 @@
     :disable="$attrs.disabled"
     v-bind="config"
   >
-    <template v-for="{key,type,rules,templateOptions,render,hide} in fields">
+    <template v-for="{key,type,rules,templateOptions,render,hide,wrapperClass} in fields">
       <FieldItem
         v-if="!hide"
         :Key="key"
@@ -15,6 +15,7 @@
         :templateOptions="templateOptions"
         :data="data"
         :render="render"
+        :class="[wrapperClass]"
       >
         <template
           :slot="render"
