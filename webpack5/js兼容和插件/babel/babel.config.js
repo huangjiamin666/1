@@ -13,5 +13,17 @@ module.exports = {
   //   }
   //   ]
   // ]
-  presets: ['@babel/preset-env']
+  // presets: ['@babel/preset-env']
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        // false 不对当前js处理做polyfill填充
+        // entry  依据.browserslistrc进行填充
+        // usage 依据用户源代码所使用到的新语法进行填充
+        useBuiltIns: 'usage',
+        corejs: 3 // 当前corejs版本
+      }
+    ]
+  ]
 }

@@ -30,3 +30,4 @@ router.js中
     ]
 }
 
+4.<el-popover placement="bottom" popper-class="wrap" trigger="hover"></el-popover>
