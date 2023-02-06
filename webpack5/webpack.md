@@ -23,9 +23,10 @@
         from:'public',
         <!-- to: //默認不用寫 -->
         globOptions:{
+          <!-- 要忽略的文件 -->
           ignore:[
             '**/index.html',
-            "**/.DS_Store"
+            "**/.DS_Store" //苹果电脑生成的文件
           ]
         }
       }
@@ -63,7 +64,6 @@
     output: {
         filename: 'js/main.js',
         path: path.resolve(__dirname, 'dist'), // 打包后的输出路径
-        // 打包本地運行的時候才加'./',服務器讀取的時候還是'/',當然怎麽取值還要看具體情況
         publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
         // assetModuleFilename: 'img/[name].[hash:4][ext]' // asset模块打包图片路径
       },
