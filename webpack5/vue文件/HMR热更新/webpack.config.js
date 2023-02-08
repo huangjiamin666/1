@@ -14,6 +14,7 @@ module.exports={
         path: path.resolve(__dirname,'dist'), // 打包后的输出路径
         // assetModuleFilename: 'img/[name].[hash:4][ext]' // asset模块打包图片路径
     },
+    // 模块热更新
     devServer: {
       hot: true
     },
