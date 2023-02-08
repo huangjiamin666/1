@@ -24,6 +24,9 @@ module.exports = {
         useBuiltIns: 'usage',
         corejs: 3 // 当前corejs版本
       }
-    ]
+    ],
+//     当使用babel-loader编译typescript时
+// npm install @babel/preset-typescript -D
+    ['@babel/preset-typescript']
   ]
 }
