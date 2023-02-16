@@ -62,7 +62,6 @@ package.json里加上
 
 3. css的tree Shaking  结合PurgeCss
 npm install purgecss-webpack-plugin -D
-npm install
 const PurgeCssPlugin=require('purgecss-webpack-plugin')
 const glob=require('glob')
 plugins:[

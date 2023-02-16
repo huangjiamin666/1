@@ -118,3 +118,7 @@ new HtmlWebpackPlugin({
     new CssMinimizerPlugin()
   ]
 
+13. 作用域提升，生产模式下自动有不用配置，开发环境要配置
+   new webpack.optimize.ModuleConcatenationPlugin()
+
+
