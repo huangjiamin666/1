@@ -8,7 +8,11 @@
       :props="propsDistrict"
       @active-item-change="areaChange"
     >
-    <!-- @active-item-change解决点击出现暂无数据的bug -->
+    <!-- 
+      @active-item-change
+      @expand-change
+      @chang
+     -->
     </el-cascader>
   </div>
 </template>
