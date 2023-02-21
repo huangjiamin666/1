@@ -6,8 +6,9 @@
       ref="areaAddr"
       :placeholder="formData.cityName ? formData.cityName : '请选择立案地'"
       :props="propsDistrict"
-      @change="areaChange"
+      @active-item-change="areaChange"
     >
+    <!-- @active-item-change解决点击出现暂无数据的bug -->
     </el-cascader>
   </div>
 </template>
