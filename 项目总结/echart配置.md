@@ -1,0 +1,57 @@
+tooltip:{
+    trigger:'item',
+    formatter:"{b}:<br/>{c}({d}%)",
+    backgroundColor:'#fff',
+    textStyle:{
+        color:'#000'
+    },
+    axisPointer:{
+        type:'shadow',
+        shadowStyle:{
+            color:'rgba(0,0,0,0.15)'
+        },
+    }
+    borderColor:'gray',
+    extraCssText:'box-shadow:0 0 2px rgba(0,0,0,0.3)'
+}
+legend:{
+    orient:'horizontal',
+    bottom:'-50',
+    x:'center',
+    <!-- 標題翻頁 -->
+    type:'scroll',
+    y:'bottom',
+    itemWidth:5,
+    data:['email','qq','wechat']
+    itemHeight:5,
+    itemGap:5,
+    icon:'circle'
+}
+grid:{
+    left:'3%',
+    right:'4%',
+    bottom:'2%',
+    containLabel:true
+}
+color:['#ccc',red]
+series:[
+    {
+    name:'餅圖',
+    type:'pie',
+    radius:['60%','70%'],
+    center:['50%','50%'],
+    avoidLabelOverlap:true,
+    label:{
+        show:false,
+        position:'center'
+    },
+    labelLine:{
+        show:false,
+    },
+    data:[
+        {value:100,name:'111'},
+        {value:100,name:'111'},
+        {value:100,name:'111'},
+    ]
+    }
+]
