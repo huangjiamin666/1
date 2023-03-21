@@ -9,6 +9,7 @@ fs.stat(path,(err,data)=>{
         mkdir(path);
         return;
     }
+    // data.isDirectory=true说明是一个文件  data.isDirectory=false说明是一个目录
     if(!data.isDirectory()){
          //首先删除文件，再去执行创建目录
          fs.unlink(path,(err)=>{
