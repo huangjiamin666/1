@@ -12,6 +12,8 @@ http.createServer(function (req, res) {
     let pathname = url.parse(req.url).pathname;
     let extname = path.extname(pathname);
     if (!extname) {   //如果有后缀名的话让静态web服务去处理 
+
+        // 动态服务
         if (pathname == '/login') {
             let msg = "数据库里面获取的数据";
             let list = [
@@ -30,6 +32,7 @@ http.createServer(function (req, res) {
                     title: '新闻5555'
                 }
             ]
+            // ejs的使用规范参考nodejs官网
             ejs.renderFile('./views/login.ejs', {
                 msg: msg,
                 list: list
@@ -38,6 +41,8 @@ http.createServer(function (req, res) {
                 res.end(data);
             })
 
+
+        // 静态服务
         } else if (pathname == '/register') {
             res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
             res.end("执行注册");
