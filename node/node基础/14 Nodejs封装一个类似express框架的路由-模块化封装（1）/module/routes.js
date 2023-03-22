@@ -35,12 +35,14 @@ let app = {
     },
     login: (req, res) => {
       ejs.renderFile('./views/form.ejs',{},(err,data)=>{
+        // 在页面上渲染form表单
         res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
         res.end(data)
       })
     },
     news: (req, res) => {       
-        res.end('news');
+        // 在页面上渲染这段文字
+        res.end('你好啊');
     },
     doLogin:(req, res) => {       
          //获取post传值        
@@ -53,7 +55,8 @@ let app = {
             res.end(postData);
          })
          
-    },error:(req, res) => {
+    },
+    error:(req, res) => {
         res.end('404');
     }
 }
