@@ -23,3 +23,7 @@ fs模块
 
 同步读取文件 readFileSync
  data.toString() 将buffer转换为字符串
+
+
+
+ 安装mongoDB时有个Install MongoDB Compress不要勾选内容太大（可视化管理工具，可能会下载失败）
