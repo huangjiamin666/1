@@ -20,4 +20,6 @@
         'process.env':env
     })
    ]
+
+   @wangeditor文本编辑器，
  
