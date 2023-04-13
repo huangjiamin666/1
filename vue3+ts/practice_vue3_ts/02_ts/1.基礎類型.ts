@@ -1,15 +1,15 @@
-// 1. 布尔值
+// 1. 布尔值 boolean
 let isDone: boolean = false;
 isDone = true;
 // isDone = 2 // error
 
-// 2. 数字
+// 2. 数字 number
 let a1: number = 10 // 十进制
 let a2: number = 0b1010  // 二进制
 let a3: number = 0o12 // 八进制
 let a4: number = 0xa // 十六进制
 
-// 3. 字符串
+// 3. 字符串 string和数据拼接
 let myname: string = 'tom'
 myname = 'jack'
 // name = 12 // error
@@ -17,7 +17,15 @@ let age: number = 12
 const info = `My name is ${myname}, I am ${age} years old!`
 
 // 4. undefined 和 null
-// TypeScript 里，undefined 和 null 两者各自有自己的类型分别叫做 undefined 和 null。 它们的本身的类型用处不是很大：
+// TypeScript 里，
+// undefined 和 null 两者各自有自己的类型分别叫做
+//  undefined 和 null。 
+// 他们都可以作为其他类型的子类型（）
+
+// 这两个非严格模式下才成立
+// let num2: number =null
+// let num2: number = undefined
+
 let u: undefined = undefined
 let n: null = null
 
@@ -28,7 +36,9 @@ let list1: number[] = [1, 2, 3]
 let list2: Array<number> = [1, 2, 3]
 
 // 6.元组 Tuple
-// 元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 string 和 number 类型的元组。
+// 元组类型允许表示一个已知元素数量和类型的数组，
+// 各元素的类型不必相同。
+//  比如，你可以定义一对值分别为 string 和 number 类型的元组。
 let t1: [string, number]
 t1 = ['hello', 10] // OK
 t1 = [10, 'hello'] // Error
@@ -110,18 +120,20 @@ function toString2(x: number | string): string {
 }
 // 需求2: 定义一个一个函数得到一个数字或字符串值的长度
 
-function getLength(x: number | string) {
+function getLength(x: number | string): number {
 
   // return x.length // error
 
-  if (x.length) { // error
+  if (x.length) { // 这里ts不知道x是string还是numer所以报错，用如下类型断言来解决
+    // string
     return x.length
   } else {
+    // number
     return x.toString().length
   }
 }
 
-// 12. 类型断言
+// 12. 类型断言（告诉编译器我知道自己是什么类型）
 // 类型断言有两种形式。 其一是“尖括号”语法, 另一个为 as 语法
 
 /* 

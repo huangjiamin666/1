@@ -1,5 +1,8 @@
 // 1. 接口
-// TypeScript 的核心原则之一是对值所具有的结构进行类型检查。我们使用接口（Interfaces）来定义对象的类型。接口是对象的状态(属性)和行为(方法)的抽象(描述)
+// TypeScript 的核心原则之一是对值所具有的结构进行类型检查。
+// 我们使用接口（Interfaces）来定义对象的类型。
+// 接口是对象的状态(属性)和行为(方法)的抽象(描述)
+
 /* 
 在 TypeScript 中，我们使用接口（Interfaces）来定义对象的类型
 接口: 是对象的状态(属性)和行为(方法)的抽象(描述)
@@ -76,6 +79,12 @@ person3.ids = 2 // error
 // 最简单判断该用 readonly 还是 const 的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用 readonly。
 
 
+
+
+
+
+
+
 // 4. 函数类型
 // 接口能够描述 JavaScript 中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。
 
@@ -103,8 +112,8 @@ console.log(mySearch('abcd', 'bc'))
 // 与 C# 或 Java 里接口的基本作用一样，TypeScript 也能够用它来明确的强制一个类去符合某种契约。
 /* 
 类类型: 实现接口
-1. 一个类可以实现多个接口
-2. 一个接口可以继承多个接口
+1. 一个类可以实现多个接口,然后使用接口里面的方法
+2. 一个接口可以继承多个接口，
 */
 interface Alarm {
   alert(): any;
@@ -115,6 +124,8 @@ interface Light {
   lightOff(): void;
 }
 
+
+// 类实现接口
 class Car implements Alarm {
   alert() {
     console.log('Car alert');
@@ -135,12 +146,18 @@ class Car2 implements Alarm, Light {
 }
 
 // 接口继承接口
-// 和类一样，接口也可以相互继承。 这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。
+// 和类一样，接口也可以相互继承。 
+// 这让我们能够从一个接口里复制成员到另一个接口里，
+// 可以更灵活地将接口分割到可重用的模块里。
 
+// 接口继承接口
 interface LightableAlarm extends Alarm, Light {
 
 }
+
+// 类实现接口
 class Car3 implements LightableAlarm {
+  // 最后在类里使用接口的方法
   alert() {
     console.log('Car alert');
   }
