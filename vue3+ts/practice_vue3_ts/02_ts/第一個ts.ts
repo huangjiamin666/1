@@ -16,7 +16,11 @@ let user = 'Yee' // 此時user只能是字符串
 console.log(greeter(user))
 
 // 2.接口 是一種能力，一種約束而已
-// 在 TypeScript 里，只在两个类型内部的结构兼容，那么这两个类型就是兼容的。 这就允许我们在实现接口时候只要保证包含了接口要求的结构就可以，而不必明确地使用 implements 语句。
+// 在 TypeScript 里，
+// 只在两个类型内部的结构兼容，
+// 那么这两个类型就是兼容的。
+// 这就允许我们在实现接口时候只要保证包含了接口要求的结构就可以，
+// 而不必明确地使用 implements 语句。
 interface Person {
   firstName: string
   lastName: string
