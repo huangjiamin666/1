@@ -84,4 +84,4 @@ function addts(x: string | number, y: string | number): string | number {
 
 console.log(addts(1, 2))
 console.log(addts('a', 'b'))
-// console.log(add(1, 'a')) // error
+console.log(add(1, 'a')) // error

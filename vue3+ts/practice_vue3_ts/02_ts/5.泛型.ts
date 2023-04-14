@@ -47,6 +47,7 @@ console.log(result[0].length, result[1].toFixed())
 // 在使用接口时, 再指定具体的泛型类型
 
 interface IbaseCRUD<T> {
+  // data: Array<T>这个和下面是一个意思
   data: T[]
   add: (t: T) => void
   getById: (id: number) => T
