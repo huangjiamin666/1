@@ -7,7 +7,6 @@
 import { defineStore } from 'pinia'
 import type { AppState, Language, Theme } from './helper'
 import { getLocalSetting, setLocalSetting } from './helper'
-import { store } from '@/store'
 
 export const useAppStore = defineStore('app-store', {
   state: (): AppState => getLocalSetting(),
@@ -36,6 +35,6 @@ export const useAppStore = defineStore('app-store', {
   },
 })
 
-export function useAppStoreWithOut() {
-  return useAppStore(store)
-}
+// export function useAppStoreWithOut() {
+//   return useAppStore(store)
+// }

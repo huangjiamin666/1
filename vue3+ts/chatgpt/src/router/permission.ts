@@ -5,11 +5,11 @@
  * @Description: 路由导航守卫
  */
 import type { Router } from 'vue-router'
-import { useAuthStoreWithout } from '@/store/modules/auth'
+import { useAuthStore } from '@/store'
 
 export function setupPageGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
-    const authStore = useAuthStoreWithout()
+    const authStore = useAuthStore()
     if (!authStore.session) {
       try {
         const data = await authStore.getSession()
